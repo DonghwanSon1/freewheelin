@@ -1,30 +1,24 @@
-package com.project.pulleymath.domain.problem
+package com.project.pulleymath.domain.piece
 
-import com.project.pulleymath.domain.unitCode.UnitCode
-import java.time.LocalDateTime
+import com.project.pulleymath.domain.users.entity.Users
 import javax.persistence.*
 
 @Entity
-@Table(name = "problem")
-data class Problem(
+@Table(name = "piece")
+data class Piece(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sn")
     val sn: Long? = null,
 
+    @Column(name = "name", nullable = false)
+    val name: String? = null,
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "unit_code_sn", referencedColumnName = "sn")
-    val unitCode: UnitCode? = null,
+    @JoinColumn(name = "users_sn", referencedColumnName = "sn", nullable = false)
+    val createdBy: Users? = null,
 
-    @Column(name = "level")
-    val level: Long? = null,
-
-    @Column(name = "type")
-    val type: String? = null,
-
-    @Column(name = "answer")
-    val answer: Long? = null,
-) {
+    ) {
 
 //    companion object {
 //        fun createCategory(categoryRq: CategoryRq): Problem {
