@@ -1,6 +1,8 @@
 package com.project.pulleymath.domain.problem
 
 import com.project.pulleymath.common.response.BaseResponse
+import com.project.pulleymath.domain.problem.enums.Level
+import com.project.pulleymath.domain.problem.enums.Type
 import com.project.pulleymath.domain.problem.rqrs.ProblemListRs
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -18,7 +20,7 @@ class ProblemController(
                       @RequestParam unitCodeSnList: List<Long>,
                       @RequestParam level: Level,
                       @RequestParam problemType: Type): BaseResponse<ProblemListRs> {
-        return BaseResponse(data = problemService.search(totalCount, unitCodeSnList, level, problemType))
+        return BaseResponse(data = problemService.searchProblem(totalCount, unitCodeSnList, level, problemType))
     }
 //
 //    @PostMapping

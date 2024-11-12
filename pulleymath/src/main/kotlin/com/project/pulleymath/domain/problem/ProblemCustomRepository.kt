@@ -1,7 +1,7 @@
 package com.project.pulleymath.domain.problem
 
+import com.project.pulleymath.domain.problem.enums.Type
 import com.project.pulleymath.domain.problem.rqrs.ProblemRs
-import com.project.pulleymath.domain.unitCode.UnitCode
 
 
 interface ProblemCustomRepository {
