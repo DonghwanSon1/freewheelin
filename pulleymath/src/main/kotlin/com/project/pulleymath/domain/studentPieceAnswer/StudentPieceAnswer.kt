@@ -1,7 +1,7 @@
 package com.project.pulleymath.domain.studentPieceAnswer
 
 import com.project.pulleymath.domain.piece.Piece
-import org.springframework.beans.factory.parsing.Problem
+import com.project.pulleymath.domain.problem.Problem
 import javax.persistence.*
 
 @Entity
