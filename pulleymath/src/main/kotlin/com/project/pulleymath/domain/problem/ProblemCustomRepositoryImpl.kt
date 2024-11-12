@@ -3,7 +3,6 @@ package com.project.pulleymath.domain.problem
 import com.querydsl.core.types.Projections
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.stereotype.Repository
-import com.project.pulleymath.domain.category.rqrs.CategoryRs
 import com.project.pulleymath.domain.problem.rqrs.ProblemRs
 import com.project.pulleymath.domain.unitCode.QUnitCode
 import com.project.pulleymath.domain.unitCode.UnitCode

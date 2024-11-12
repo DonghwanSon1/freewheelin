@@ -1,6 +1,5 @@
 package com.project.pulleymath.domain.problem
 
-import com.project.pulleymath.domain.category.rqrs.CategoryRq
 import com.project.pulleymath.domain.unitCode.UnitCode
 import java.time.LocalDateTime
 import javax.persistence.*
