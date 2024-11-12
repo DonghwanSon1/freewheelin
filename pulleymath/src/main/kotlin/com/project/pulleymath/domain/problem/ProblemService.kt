@@ -4,8 +4,6 @@ package com.project.pulleymath.domain.problem
 import com.project.pulleymath.common.exception.CommonException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import com.project.pulleymath.domain.category.rqrs.CategoryRq
-import com.project.pulleymath.domain.category.rqrs.CategoryRs
 import com.project.pulleymath.common.exception.CommonExceptionCode
 import com.project.pulleymath.domain.problem.rqrs.ProblemListRs
 import com.project.pulleymath.domain.problem.rqrs.ProblemRs
