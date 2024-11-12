@@ -4,8 +4,8 @@ import io.swagger.v3.oas.annotations.media.Schema
 import java.time.LocalDateTime
 
 data class ProblemRs(
-    @Schema(description = "문제 id")
-    val id: Long? = null,
+    @Schema(description = "문제 sn")
+    val sn: Long? = null,
 
     @Schema(description = "정답")
     val answer: Long? = null,

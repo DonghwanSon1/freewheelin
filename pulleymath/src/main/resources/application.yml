@@ -9,9 +9,6 @@ spring:
     driver-class-name: org.h2.Driver
     username: admin
     password: admin
-#  flyway:
-#    enabled: true
-#    baseline-on-migrate: true
   jpa:
     properties:
       hibernate:

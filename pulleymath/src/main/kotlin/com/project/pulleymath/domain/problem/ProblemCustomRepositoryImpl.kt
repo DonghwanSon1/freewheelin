@@ -19,7 +19,7 @@ class ProblemCustomRepositoryImpl(private val queryFactory: JPAQueryFactory) : P
             .select(
                 Projections.fields(
                     ProblemRs::class.java,
-                    problem.id,
+                    problem.sn,
                     problem.answer,
                     unitCode.code.`as`("unitCode"),
                     problem.level,

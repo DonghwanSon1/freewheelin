@@ -9,8 +9,8 @@ import javax.persistence.*
 data class Problem(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    val id: Long? = null,
+    @Column(name = "sn")
+    val sn: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "unit_code_sn", referencedColumnName = "sn")

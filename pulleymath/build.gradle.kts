@@ -33,10 +33,6 @@ dependencies {
 	// Swagger
 	implementation("org.springdoc:springdoc-openapi-ui:1.6.11")
 
-	// H2용 Flyway
-//	implementation("org.flywaydb:flyway-core")
-//	implementation("org.flywaydb:flyway-h2")
-
 	runtimeOnly("com.h2database:h2:2.1.210")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
