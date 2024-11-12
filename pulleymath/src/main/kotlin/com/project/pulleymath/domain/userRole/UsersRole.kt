@@ -17,8 +17,7 @@ data class UsersRole(
     val user: Users? = null,
 
     @Column(name = "role", nullable = false)
-    @Enumerated(EnumType.STRING)
-    val role: Role? = null,
+    val role: String? = null,
 
     ) {
 }

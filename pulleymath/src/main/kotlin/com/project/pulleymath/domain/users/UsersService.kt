@@ -1,19 +1,27 @@
 package com.project.pulleymath.domain.users
 
 
+import com.example.demo.common.authority.TokenInfo
+import com.project.pulleymath.common.authority.JwtTokenProvider
 import com.project.pulleymath.common.exception.CommonException
 import com.project.pulleymath.common.exception.CommonExceptionCode
 import com.project.pulleymath.domain.userRole.UsersRoleService
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import com.project.pulleymath.domain.userRole.enums.Role
+import com.project.pulleymath.domain.users.rqrs.LoginRq
 import com.project.pulleymath.domain.users.rqrs.UserRq
+import com.project.pulleymath.domain.users.rqrs.UserRs
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 
 @Service
 @Transactional(readOnly = true)
 class UsersService(
     private val usersRoleService: UsersRoleService,
     private val usersRepository: UsersRepository,
+    private val authenticationManagerBuilder: AuthenticationManagerBuilder,
+    private val jwtTokenProvider: JwtTokenProvider,
 ) {
 
   @Transactional
@@ -31,16 +39,19 @@ class UsersService(
     return "회원가입이 완료되었습니다."
   }
 
-//  /**
-//   * 로그인 -> 토큰 발행
-//   */
-//  fun login(loginDto: LoginDto): TokenInfo {
-//    val authenticationToken = UsernamePasswordAuthenticationToken(loginDto.loginId, loginDto.password)
-//    val authentication = authenticationManagerBuilder.`object`.authenticate(authenticationToken)
-//
-//    return jwtTokenProvider.createToken(authentication)
-//  }
-//
+  /**
+   * 로그인 -> 토큰 발행
+   */
+  fun login(loginRq: LoginRq): TokenInfo {
+    val user: UserRs? = usersRepository.findUserWithRoles(loginRq.id!!)
+    println(user)
+
+    val authenticationToken = UsernamePasswordAuthenticationToken(loginRq.id, loginRq.password)
+    val authentication = authenticationManagerBuilder.`object`.authenticate(authenticationToken)
+
+    return jwtTokenProvider.createToken(authentication)
+  }
+
 //  /**
 //   * 내 정보 조회
 //   */

@@ -1,9 +1,13 @@
 package com.project.pulleymath.domain.users
 
+import com.example.demo.common.authority.TokenInfo
 import com.project.pulleymath.common.response.BaseResponse
+import com.project.pulleymath.common.response.CustomUser
 import com.project.pulleymath.domain.userRole.enums.Role
+import com.project.pulleymath.domain.users.rqrs.LoginRq
 import com.project.pulleymath.domain.users.rqrs.UserRq
 import io.swagger.v3.oas.annotations.tags.Tag
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -31,18 +35,18 @@ class UsersController(
   /**
    * 로그인
    */
-//  @PostMapping("/login")
-//  fun login(@RequestBody @Valid loginDto: LoginDto): BaseResponse<TokenInfo> {
-//    val tokenInfo = usersService.login(loginDto)
-//    return BaseResponse(data = tokenInfo)
-//  }
+  @PostMapping("/login")
+  fun login(@RequestBody loginRq: LoginRq): BaseResponse<TokenInfo> {
+    val tokenInfo = usersService.login(loginRq)
+    return BaseResponse(data = tokenInfo)
+  }
 
   /**
    * 내 정보 보기
    */
 //  @GetMapping("/info")
-//  fun searchMyInfo(): BaseResponse<MemberDtoResponse> {
-//    val userId = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
+//  fun searchMyInfo(): BaseResponse<Unit> {
+//    val userId = (SecurityContextHolder.getContext().authentication.principal as CustomUser).sn
 //    val response = usersService.searchMyInfo(userId)
 //    return BaseResponse(data = response)
 //  }
