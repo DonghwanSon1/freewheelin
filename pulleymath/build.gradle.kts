@@ -26,6 +26,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+
 	// QueryDSL
 	implementation("com.querydsl:querydsl-jpa:5.0.0")
 	kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
@@ -35,6 +36,7 @@ dependencies {
 
 	// Spring Security
 	implementation("org.springframework.boot:spring-boot-starter-security")
+
 	// JWT
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
