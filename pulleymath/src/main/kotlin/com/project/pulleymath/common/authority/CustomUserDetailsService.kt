@@ -27,7 +27,7 @@ class CustomUserDetailsService(
         CustomUser(
             user.sn!!,
             user.id!!,
-            passwordEncoder.encode(user.password),
+            user.password.toString(),
             listOf(SimpleGrantedAuthority(user.role))
         )
 }

@@ -14,6 +14,7 @@ import com.project.pulleymath.domain.users.rqrs.UserRq
 import com.project.pulleymath.domain.users.rqrs.UserRs
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
+import org.springframework.security.crypto.password.PasswordEncoder
 
 @Service
 @Transactional(readOnly = true)
@@ -22,6 +23,7 @@ class UsersService(
     private val usersRepository: UsersRepository,
     private val authenticationManagerBuilder: AuthenticationManagerBuilder,
     private val jwtTokenProvider: JwtTokenProvider,
+    private val passwordEncoder: PasswordEncoder
 ) {
 
   @Transactional
@@ -30,7 +32,7 @@ class UsersService(
     var user: Users? = usersRepository.findById(userRq.id!!)
     if (user != null) throw CommonException(CommonExceptionCode.DUPLICATE_ID)
 
-    user = Users.createUser(userRq)
+    user = Users.createUser(userRq, passwordEncoder.encode(userRq.password))
     usersRepository.save(user)
 
 

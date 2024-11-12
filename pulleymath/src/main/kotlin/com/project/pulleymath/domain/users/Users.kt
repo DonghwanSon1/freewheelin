@@ -22,10 +22,10 @@ data class Users(
 
 ) {
     companion object {
-        fun createUser(userRq: UserRq): Users {
+        fun createUser(userRq: UserRq, encryptedPassword: String): Users {
             return Users(
                 id = userRq.id,
-                password = userRq.password,
+                password = encryptedPassword,
                 name = userRq.name
             )
         }
