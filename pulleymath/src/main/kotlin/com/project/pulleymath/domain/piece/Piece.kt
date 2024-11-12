@@ -15,29 +15,17 @@ data class Piece(
     val name: String? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = ForeignKey(name = "FK_PIECE_CREATED_BY"))
+    @JoinColumn(name = "created_by", foreignKey = ForeignKey(name = "FK_PIECE_CREATED_BY"))
     val createdBy: Users? = null,
 
     ) {
 
-//    companion object {
-//        fun createCategory(categoryRq: CategoryRq): Problem {
-//            return Problem(
-//                name = categoryRq.name,
-//                order = categoryRq.order ?: 0,
-//                createdAt = LocalDateTime.now(),
-//                updatedAt = LocalDateTime.now()
-//            )
-//        }
-//    }
-//
-//    fun updateCategory(categoryRq: CategoryRq): Problem {
-//        return Problem(
-//            sn = this.sn,
-//            name = categoryRq.name ?: this.name,
-//            order = categoryRq.order ?: this.order,
-//            createdAt = this.createdAt ?: LocalDateTime.now(),
-//            updatedAt = LocalDateTime.now()
-//        )
-//    }
+    companion object {
+        fun createPiece(name: String, user: Users): Piece {
+            return Piece(
+                name = name,
+                createdBy = user
+            )
+        }
+    }
 }

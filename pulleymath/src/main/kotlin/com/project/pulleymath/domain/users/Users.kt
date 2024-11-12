@@ -29,5 +29,9 @@ data class Users(
                 name = userRq.name
             )
         }
+
+        fun from(sn: Long): Users {
+            return Users(sn = sn)
+        }
     }
 }

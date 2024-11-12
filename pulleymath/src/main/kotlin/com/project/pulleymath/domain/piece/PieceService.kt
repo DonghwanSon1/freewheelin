@@ -1,18 +1,41 @@
 package com.project.pulleymath.domain.piece
 
 
+import com.project.pulleymath.domain.piece.rqrs.PieceRq
+import com.project.pulleymath.domain.pieceProblem.PieceProblemService
 import com.project.pulleymath.domain.problem.enums.Level
 import com.project.pulleymath.domain.problem.enums.Type
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import com.project.pulleymath.domain.problem.rqrs.ProblemListRs
 import com.project.pulleymath.domain.problem.rqrs.ProblemRs
+import com.project.pulleymath.domain.users.Users
+import com.project.pulleymath.domain.users.UsersService
 
 @Service
 @Transactional(readOnly = true)
 class PieceService(
-    private val pieceRepository: PieceRepository
+    private val pieceRepository: PieceRepository,
+    private val pieceProblemService: PieceProblemService
 ) {
+
+  /**
+   * 학습지 테이블 및 학습지 문제 테이블에 저장하는 함수
+   */
+  @Transactional
+  fun savePiece(pieceRq: PieceRq, userSn: Long): String {
+
+    // Rq를 통해 학습지 이름과, 유저정보를 가지고 학습지 엔티티를 생성한 후 저장한다.
+    val piece: Piece = Piece.createPiece(pieceRq.name, Users.from(userSn))
+    pieceRepository.save(piece)
+
+    // 저장한 학습지와 문제리스트들을 보내 학습지 문제 테이블에 저장할 수 있도록 한다.
+    pieceProblemService.savePieceProblem(piece, pieceRq.problemSnList)
+
+    return "학습지 생성이 완료되었습니다."
+  }
+
+
 
 //
 //    @Transactional

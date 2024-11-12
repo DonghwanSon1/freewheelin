@@ -2,6 +2,7 @@ package com.project.pulleymath.domain.pieceProblem
 
 import com.project.pulleymath.domain.piece.Piece
 import com.project.pulleymath.domain.problem.Problem
+import com.project.pulleymath.domain.users.Users
 import javax.persistence.*
 
 @Entity
@@ -20,5 +21,13 @@ data class PieceProblem(
     @JoinColumn(foreignKey = ForeignKey(name = "FK_PIECE_PROBLEM_PROBLEM_SN"))
     val problem: Problem? = null,
 
-    ) {
+) {
+    companion object {
+        fun createPieceProblem(piece: Piece, problem: Problem): PieceProblem {
+            return PieceProblem(
+                piece = piece,
+                problem = problem
+            )
+        }
+    }
 }

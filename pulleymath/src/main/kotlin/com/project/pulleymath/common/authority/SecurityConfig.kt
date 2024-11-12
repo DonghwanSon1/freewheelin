@@ -23,7 +23,7 @@ class SecurityConfig(
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authorizeHttpRequests {
                 it.antMatchers("/users/teacher/signup", "/users/student/login").permitAll()
-//                    .antMatchers("").hasAuthority("TEACHER")
+                    .antMatchers("/teacher/**").hasAuthority("TEACHER")
                     .anyRequest().permitAll()
             }
             .addFilterBefore(

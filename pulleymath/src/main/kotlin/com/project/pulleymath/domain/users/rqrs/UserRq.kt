@@ -5,11 +5,11 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class UserRq(
 
     @Schema(description = "유저 ID")
-    val id: String?,
+    val id: String? = null,
 
     @Schema(description = "유저 PW")
-    val password: String,
+    val password: String? = null,
 
     @Schema(description = "유저 이름")
-    val name: String
+    val name: String? = null
 )

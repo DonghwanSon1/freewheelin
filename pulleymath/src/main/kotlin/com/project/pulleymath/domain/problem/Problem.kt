@@ -26,17 +26,12 @@ data class Problem(
     val answer: Long? = null,
 ) {
 
-//    companion object {
-//        fun createCategory(categoryRq: CategoryRq): Problem {
-//            return Problem(
-//                name = categoryRq.name,
-//                order = categoryRq.order ?: 0,
-//                createdAt = LocalDateTime.now(),
-//                updatedAt = LocalDateTime.now()
-//            )
-//        }
-//    }
-//
+    companion object {
+        fun from(problemSn: Long): Problem {
+            return Problem(sn = problemSn)
+        }
+    }
+
 //    fun updateCategory(categoryRq: CategoryRq): Problem {
 //        return Problem(
 //            sn = this.sn,
