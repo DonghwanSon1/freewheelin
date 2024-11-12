@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /pulley
+
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/pulleymath;DATABASE_TO_UPPER=false;MODE=MYSQL;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+    username: admin
+    password: admin
+#  flyway:
+#    enabled: true
+#    baseline-on-migrate: true
+  jpa:
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        show_sql: false
+        format_sql: true
+        highlight_sql: true
+
+logging:
+  pattern:
+    console: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type.descriptor.sql.BasicBinder: TRACE
