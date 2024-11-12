@@ -1,7 +1,6 @@
-package com.project.pulleymath.domain.users.entity
+package com.project.pulleymath.domain.users
 
-import com.project.pulleymath.domain.unitCode.UnitCode
-import java.time.LocalDateTime
+import com.project.pulleymath.domain.users.rqrs.UserRq
 import javax.persistence.*
 
 @Entity
@@ -22,4 +21,13 @@ data class Users(
     val name: String? = null,
 
 ) {
+    companion object {
+        fun createUser(userRq: UserRq): Users {
+            return Users(
+                id = userRq.id,
+                password = userRq.password,
+                name = userRq.name
+            )
+        }
+    }
 }

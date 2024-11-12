@@ -13,11 +13,11 @@ data class PieceProblem(
     val sn: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "piece_sn", referencedColumnName = "sn", nullable = false)
+    @JoinColumn(foreignKey = ForeignKey(name = "FK_PIECE_PROBLEM_PIECE_SN"))
     val piece: Piece? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "problem_sn", referencedColumnName = "sn", nullable = false)
+    @JoinColumn(foreignKey = ForeignKey(name = "FK_PIECE_PROBLEM_PROBLEM_SN"))
     val problem: Problem? = null,
 
     ) {

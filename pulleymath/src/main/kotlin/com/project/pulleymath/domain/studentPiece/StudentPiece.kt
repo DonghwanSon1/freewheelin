@@ -1,8 +1,7 @@
 package com.project.pulleymath.domain.studentPiece
 
 import com.project.pulleymath.domain.piece.Piece
-import com.project.pulleymath.domain.users.entity.Users
-import org.springframework.beans.factory.parsing.Problem
+import com.project.pulleymath.domain.users.Users
 import javax.persistence.*
 
 @Entity
@@ -14,11 +13,11 @@ data class StudentPiece(
     val sn: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "piece_sn", referencedColumnName = "sn", nullable = false)
+    @JoinColumn(foreignKey = ForeignKey(name = "FK_STUDENT_PIECE_PIECE_SN"))
     val piece: Piece? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "users_sn", referencedColumnName = "sn", nullable = false)
+    @JoinColumn(foreignKey = ForeignKey(name = "FK_STUDENT_PIECE_STUDENT_SN"))
     val studentSn: Users? = null,
 
     @Column(name = "correct_rate")

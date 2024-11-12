@@ -13,7 +13,7 @@ data class Problem(
     val sn: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "unit_code_sn", referencedColumnName = "sn")
+    @JoinColumn(foreignKey = ForeignKey(name = "FK_PROBLEM_UNIT_CODE_SN"))
     val unitCode: UnitCode? = null,
 
     @Column(name = "level")

@@ -1,4 +1,4 @@
-package com.project.pulleymath.domain.users.enums
+package com.project.pulleymath.domain.userRole.enums
 
 enum class Role(val desc: String) {
   TEACHER("선생님"),

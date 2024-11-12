@@ -1,6 +1,6 @@
 package com.project.pulleymath.domain.piece
 
-import com.project.pulleymath.domain.users.entity.Users
+import com.project.pulleymath.domain.users.Users
 import javax.persistence.*
 
 @Entity
@@ -15,7 +15,7 @@ data class Piece(
     val name: String? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "users_sn", referencedColumnName = "sn", nullable = false)
+    @JoinColumn(foreignKey = ForeignKey(name = "FK_PIECE_CREATED_BY"))
     val createdBy: Users? = null,
 
     ) {

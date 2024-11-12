@@ -1,6 +1,7 @@
-package com.project.pulleymath.domain.users.entity
+package com.project.pulleymath.domain.userRole
 
-import com.project.pulleymath.domain.users.enums.Role
+import com.project.pulleymath.domain.users.Users
+import com.project.pulleymath.domain.userRole.enums.Role
 import javax.persistence.*
 
 @Entity
@@ -12,7 +13,7 @@ data class UsersRole(
     val sn: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "users_sn", referencedColumnName = "sn", nullable = false)
+    @JoinColumn(foreignKey = ForeignKey(name = "FK_USERS_ROLE_USER_SN"))
     val user: Users? = null,
 
     @Column(name = "role", nullable = false)
