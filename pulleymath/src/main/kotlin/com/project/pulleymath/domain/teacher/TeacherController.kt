@@ -73,6 +73,7 @@ class TeacherController(
      *  - 로그인 후 토큰을 발급 받고 헤더값에 넣어야 호출 가능함!
      *  - 시큐리티를 통해 유저가 선생님이 아니면 해당 API를 호출 할 수 없다.
      *  - 최소 한명의 학생한테는 출제해야 합니다.
+     *  - 이미 가지고 있는 학생이라면 무시하고 없는 학생만 저장하도록 한다.
      */
     @PostMapping("/piece/{pieceSn}")
     @Operation(summary = "학습지 출제", description = "선생님이 학생들에게 학습지를 출제합니다.")

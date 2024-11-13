@@ -41,6 +41,7 @@ class PieceService(
 
   /**
    * 자신이 만든 학습지를 학생에게 출제하는 함수
+   *  - 학생 학습지 테이블에 저장을 전달
    */
   @Transactional
   fun examPiece(pieceSn: Long, studentSns: List<Long>, userSn: Long): String {
