@@ -42,7 +42,6 @@ class TeacherController(
         return BaseResponse(data = problemService.searchProblem(totalCount, unitCodeSnList, level, problemType))
     }
 
-
     /**
      * 학습지 생성 API
      *
@@ -64,6 +63,28 @@ class TeacherController(
         // 토큰을 통해 UserSn을 가져온다.
         val userSn = (SecurityContextHolder.getContext().authentication.principal as CustomUser).sn
         val resultMsg: String = pieceService.savePiece(pieceRq, userSn)
+        return BaseResponse(message = resultMsg)
+    }
+
+    /**
+     * 학습지 출제 API
+     *
+     * 참고
+     *  - 로그인 후 토큰을 발급 받고 헤더값에 넣어야 호출 가능함!
+     *  - 시큐리티를 통해 유저가 선생님이 아니면 해당 API를 호출 할 수 없다.
+     *  - 최소 한명의 학생한테는 출제해야 합니다.
+     */
+    @PostMapping("/piece/{pieceSn}")
+    @Operation(summary = "학습지 출제", description = "선생님이 학생들에게 학습지를 출제합니다.")
+    fun examPiece(@PathVariable pieceSn: Long,
+                  @RequestParam studentSns: List<Long>): BaseResponse<Unit> {
+
+        // 문제 리스트가 비워있거나 Null로 들어올 시 Exception 발생
+        if (studentSns.isNullOrEmpty()) throw CommonException(CommonExceptionCode.EXAM_EMPTY_STUDENTS)
+
+        // 토큰을 통해 UserSn을 가져온다.
+        val userSn = (SecurityContextHolder.getContext().authentication.principal as CustomUser).sn
+        val resultMsg: String = pieceService.examPiece(pieceSn, studentSns, userSn)
         return BaseResponse(message = resultMsg)
     }
 

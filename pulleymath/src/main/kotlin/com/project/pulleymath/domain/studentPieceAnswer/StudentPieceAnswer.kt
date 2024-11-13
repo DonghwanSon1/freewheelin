@@ -6,7 +6,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "student_piece_problem_answer")
-data class StudentPieceAnswer(
+class StudentPieceAnswer(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sn")

@@ -16,19 +16,4 @@ class PieceCustomRepositoryImpl(private val queryFactory: JPAQueryFactory) : Pie
     private val piece: QPiece = QPiece.piece
 
 
-//    override fun findAllCategory(): List<CategoryRs> {
-//        return queryFactory
-//            .select(
-//                Projections.fields(
-//                    CategoryRs::class.java,
-//                    category.sn,
-//                    category.name,
-//                    category.createdAt,
-//                    category.updatedAt
-//                )
-//            )
-//            .from(category)
-//            .orderBy(category.order.asc())
-//            .fetch()
-//    }
 }

@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "unit_code")
-data class UnitCode(
+class UnitCode(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sn")
@@ -19,24 +19,4 @@ data class UnitCode(
 
 ) {
 
-//    companion object {
-//        fun createCategory(categoryRq: CategoryRq): Problem {
-//            return Problem(
-//                name = categoryRq.name,
-//                order = categoryRq.order ?: 0,
-//                createdAt = LocalDateTime.now(),
-//                updatedAt = LocalDateTime.now()
-//            )
-//        }
-//    }
-//
-//    fun updateCategory(categoryRq: CategoryRq): Problem {
-//        return Problem(
-//            sn = this.sn,
-//            name = categoryRq.name ?: this.name,
-//            order = categoryRq.order ?: this.order,
-//            createdAt = this.createdAt ?: LocalDateTime.now(),
-//            updatedAt = LocalDateTime.now()
-//        )
-//    }
 }

@@ -6,6 +6,7 @@ plugins {
 	kotlin("plugin.jpa") version "1.9.25"
 	kotlin("kapt") version "1.8.0"
 	id ("org.flywaydb.flyway") version "8.5.13"
+	kotlin("plugin.allopen") version "1.5.10"
 }
 
 group = "com.project"
@@ -55,9 +56,9 @@ kotlin {
 }
 
 allOpen {
-	annotation("jakarta.persistence.Entity")
-	annotation("jakarta.persistence.MappedSuperclass")
-	annotation("jakarta.persistence.Embeddable")
+	annotation("javax.persistence.Entity")
+	annotation("javax.persistence.Embeddable")
+	annotation("javax.persistence.MappedSuperclass")
 }
 
 tasks.withType<Test> {

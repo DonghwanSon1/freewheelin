@@ -1,11 +1,12 @@
 package com.project.pulleymath.domain.users
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.project.pulleymath.domain.users.rqrs.UserRq
 import javax.persistence.*
 
 @Entity
 @Table(name = "users")
-data class Users(
+class Users(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sn")
@@ -14,6 +15,7 @@ data class Users(
     @Column(name = "id", unique = true, nullable = false)
     val id: String? = null,
 
+    @JsonIgnore
     @Column(name = "password", nullable = false)
     val password: String? = null,
 
@@ -21,6 +23,7 @@ data class Users(
     val name: String? = null,
 
 ) {
+
     companion object {
         fun createUser(userRq: UserRq, encryptedPassword: String): Users {
             return Users(
