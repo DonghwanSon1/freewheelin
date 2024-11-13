@@ -15,5 +15,7 @@ enum class CommonExceptionCode(
     EXAM_EMPTY_STUDENTS(HttpStatus.BAD_REQUEST, "최소 한명의 학생한테는 출제해야 합니다."),
     NOT_EXIST_PIECE(HttpStatus.BAD_REQUEST, "해당 학습지는 존재하지 않습니다."),
     INVALID_PIECE(HttpStatus.BAD_REQUEST, "선생님이 생성한 학습지만 출제 가능합니다."),
+    INVALID_STUDENT_PIECE(HttpStatus.BAD_REQUEST, "해당 학습지는 해당 유저에게 할당되지 않았습니다."),
+    DATA_LOSS(HttpStatus.INTERNAL_SERVER_ERROR, "관리자에게 문의 부탁드립니다."),
 
 }

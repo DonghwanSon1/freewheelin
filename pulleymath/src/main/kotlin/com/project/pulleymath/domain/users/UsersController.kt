@@ -18,7 +18,7 @@ class UsersController(
 ) {
 
   /**
-   * 회원가입
+   * 선생님 회원가입 API
    */
   @PostMapping("/teacher/signup")
   fun teacherSignUp(@RequestBody userRq: UserRq): BaseResponse<Unit> {
@@ -26,6 +26,9 @@ class UsersController(
     return BaseResponse(message = resultMsg)
   }
 
+  /**
+   * 학생 회원가입 API
+   */
   @PostMapping("/student/signup")
   fun studentSignUp(@RequestBody userRq: UserRq): BaseResponse<Unit> {
     val resultMsg: String = usersService.signUp(userRq, Role.STUDENT)
@@ -33,22 +36,12 @@ class UsersController(
   }
 
   /**
-   * 로그인
+   * 로그인 (토큰 발급) API
    */
   @PostMapping("/login")
   fun login(@RequestBody loginRq: LoginRq): BaseResponse<TokenInfo> {
     val tokenInfo = usersService.login(loginRq)
     return BaseResponse(data = tokenInfo)
   }
-
-  /**
-   * 내 정보 보기
-   */
-//  @GetMapping("/info")
-//  fun searchMyInfo(): BaseResponse<Unit> {
-//    val userId = (SecurityContextHolder.getContext().authentication.principal as CustomUser).sn
-//    val response = usersService.searchMyInfo(userId)
-//    return BaseResponse(data = response)
-//  }
 
 }

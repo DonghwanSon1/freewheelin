@@ -28,13 +28,11 @@ class UsersService(
 
   @Transactional
   fun signUp(userRq: UserRq, role: Role): String {
-    // ID 중복 검사
     var user: Users? = usersRepository.findById(userRq.id!!)
     if (user != null) throw CommonException(CommonExceptionCode.DUPLICATE_ID)
 
     user = Users.createUser(userRq, passwordEncoder.encode(userRq.password))
     usersRepository.save(user)
-
 
     usersRoleService.signUpRole(user, role)
 
@@ -45,21 +43,10 @@ class UsersService(
    * 로그인 -> 토큰 발행
    */
   fun login(loginRq: LoginRq): TokenInfo {
-    val user: UserRs? = usersRepository.findUserWithRoles(loginRq.id!!)
-    println(user)
-
     val authenticationToken = UsernamePasswordAuthenticationToken(loginRq.id, loginRq.password)
     val authentication = authenticationManagerBuilder.`object`.authenticate(authenticationToken)
 
     return jwtTokenProvider.createToken(authentication)
   }
-
-//  /**
-//   * 내 정보 조회
-//   */
-//  fun searchMyInfo(id: Long): MemberDtoResponse {
-//    val member: Member = memberRepository.findByIdOrNull(id) ?: throw InvalidInputException("id", "회원번호(${id})가 존재하지 않는 유저입니다.")
-//    return member.toDto()
-//  }
 
 }

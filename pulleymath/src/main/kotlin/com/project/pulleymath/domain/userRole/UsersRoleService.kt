@@ -17,8 +17,7 @@ class UsersRoleService(
 
   @Transactional
   fun signUpRole(user: Users, role: Role) {
-    val usersRole: UsersRole = UsersRole(null, user, role.name)
-    usersRoleRepository.save(usersRole)
+    usersRoleRepository.save(UsersRole(null, user, role.name))
   }
 
 }
