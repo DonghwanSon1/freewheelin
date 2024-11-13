@@ -24,6 +24,7 @@ class SecurityConfig(
             .authorizeHttpRequests {
                 it.antMatchers("/users/teacher/signup", "/users/student/login").permitAll()
                     .antMatchers("/teacher/**").hasAuthority("TEACHER")
+                    .antMatchers("/student-piece/**").hasAuthority("STUDENT")
                     .anyRequest().permitAll()
             }
             .addFilterBefore(

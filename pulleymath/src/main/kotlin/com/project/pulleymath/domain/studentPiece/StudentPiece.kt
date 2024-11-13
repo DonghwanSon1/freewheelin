@@ -28,7 +28,8 @@ class StudentPiece(
         fun createStudentPiece(piece: Piece, student: Users): StudentPiece {
             return StudentPiece(
                 piece = piece,
-                studentSn = student
+                studentSn = student,
+                correctRate = 0
             )
         }
     }

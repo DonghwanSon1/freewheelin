@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import com.project.pulleymath.domain.problem.rqrs.ProblemListRs
 import com.project.pulleymath.domain.problem.rqrs.ProblemRs
+import com.project.pulleymath.domain.studentPiece.rqrs.StudentPieceRs
 import com.project.pulleymath.domain.users.Users
 
 @Service
@@ -36,6 +37,15 @@ class StudentPieceService(
       }
     }
     studentPieceRepository.saveAll(studentPieceEntities)
-
   }
+
+  /**
+   * 자기 자신이 할당 받은 학습지 조회 하는 함수
+   */
+  fun searchStudentPiece(userSn: Long): List<StudentPieceRs>? {
+    // 자기가 속한 학습지 조회하여 Rs로 Return 한다.
+    return studentPieceRepository.searchStudentPiece(Users.from(userSn))
+  }
+
+
 }
