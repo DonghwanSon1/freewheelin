@@ -4,6 +4,7 @@ package com.project.pulleymath.domain.piece
 import com.project.pulleymath.common.exception.CommonException
 import com.project.pulleymath.common.exception.CommonExceptionCode
 import com.project.pulleymath.domain.piece.rqrs.PieceRq
+import com.project.pulleymath.domain.piece.rqrs.PieceRs
 import com.project.pulleymath.domain.pieceProblem.PieceProblemService
 import com.project.pulleymath.domain.problem.enums.Level
 import com.project.pulleymath.domain.problem.enums.Type
@@ -54,5 +55,12 @@ class PieceService(
     studentPieceService.saveStudentPiece(piece, studentSns)
 
     return "학습지 출제가 완료되었습니다."
+  }
+
+  /**
+   *
+   */
+  fun searchPiece(userSn: Long): List<PieceRs>? {
+    return pieceRepository.findByCreatedBy(Users.from(userSn))
   }
 }
