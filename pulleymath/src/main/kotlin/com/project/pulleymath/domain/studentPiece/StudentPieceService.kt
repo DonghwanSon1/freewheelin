@@ -4,9 +4,8 @@ package com.project.pulleymath.domain.studentPiece
 import com.project.pulleymath.common.exception.CommonException
 import com.project.pulleymath.common.exception.CommonExceptionCode
 import com.project.pulleymath.domain.piece.Piece
-import com.project.pulleymath.domain.piece.PieceService
 import com.project.pulleymath.domain.pieceProblem.PieceProblemService
-import com.project.pulleymath.domain.pieceProblem.dto.PieceProblemDto
+import com.project.pulleymath.domain.studentPiece.dto.StudentPieceProblemDto
 import com.project.pulleymath.domain.pieceProblem.dto.PieceProblemSimpleDto
 import com.project.pulleymath.domain.studentPiece.rqrs.*
 import com.project.pulleymath.domain.studentPieceAnswer.StudentPieceAnswerService
@@ -60,7 +59,7 @@ class StudentPieceService(
    */
   fun searchStudentPieceProblem(studentPieceSn: Long, userSn: Long): List<StudentPieceProblemRs>? {
     // studentPieceSn 이 없거나 할당받지 않은 학습지라면 Exception
-    val dto: List<PieceProblemDto> = studentPieceRepository.searchPieceProblem(studentPieceSn, Users.from(userSn))
+    val dto: List<StudentPieceProblemDto> = studentPieceRepository.searchStudentPieceProblem(studentPieceSn, Users.from(userSn))
         .takeIf { it!!.isNotEmpty() } ?: throw CommonException(CommonExceptionCode.INVALID_STUDENT_PIECE)
 
     // 가져온 DTO 를 통해 RS 대로 응답 해줄 수 있게 unitCode로 GroupBy 한 후 Rs 형식대로 만들어 Return 한다.
@@ -75,21 +74,30 @@ class StudentPieceService(
     return groupByUnitCode
   }
 
+  /**
+   * 할당 받은 학습지를 채점 후 저장하는 함수
+   *  - studentPieceSn 없거나 로그인한 학생이 할당받지 않은 학습지라면 Exception 발생
+   *  - 학생 학습지가 할당되었거나 존재한다면, 해당 학습지 안에는 무조건 문제가 있음. -> 따라서 데이터가 없다면, 데이터 손실로 인한 Exception 발생한다.
+   *  - 응답은 (학습지에 할당된 총 문제수, 채점 완료한 개수, 맞은 개수, 정답률) 이렇게 응답값을 제공한다.
+   */
   @Transactional
   fun saveStudentPieceProblemAnswer(studentPieceSn: Long,
                                     userSn: Long,
-                                    studentPieceProblemAnswerRq: List<StudentPieceProblemAnswerRq>)
+                                    rq: List<StudentPieceProblemAnswerRq>)
   : StudentPieceProblemAnswerRs {
     // studentPieceSn 없거나 로그인한 학생이 할당받지 않은 학습지라면 Exception 발생
     val studentPiece: StudentPiece = studentPieceRepository.findBySnAndStudentSn(studentPieceSn, Users.from(userSn))
         ?: throw CommonException(CommonExceptionCode.INVALID_STUDENT_PIECE)
 
+    // 위에서 학생 학습지가 할당되었거나 존재한다면, 해당 학습지 안에는 무조건 문제가 있음. -> 따라서 데이터가 없다면, 데이터 손실로 인한 Exception 발생한다.
     val dto: List<PieceProblemSimpleDto> = pieceProblemService.searchSimplePieceProblem(studentPiece.piece!!)
         ?: throw CommonException(CommonExceptionCode.DATA_LOSS)
 
+    // 위에서 가져온 학습지의 문제 번호 및 답안을 Answer 서비스에 보내 채점 후 저장 하고, Rs값을 가져온다.
     val resultRs: StudentPieceProblemAnswerRs = studentPieceAnswerService.saveStudentPieceProblemAnswer(
-        studentPieceSn, studentPieceProblemAnswerRq, dto)
+        studentPieceSn, rq, dto)
 
+    // Rs에서 학생의 학습지 정답률을 저장하기 위해 update 한 후 Rs를 return 한다.
     studentPieceRepository.save(studentPiece.updateCorrectRate(resultRs.correctRate))
 
     return resultRs

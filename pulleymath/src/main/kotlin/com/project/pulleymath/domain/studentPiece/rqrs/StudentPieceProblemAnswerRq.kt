@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 import java.time.LocalDateTime
 
 data class StudentPieceProblemAnswerRq(
+    // 재 제출시 필요한 sn값 (첫 제출이면 해당 sn 없이 요청 해야함)
     @Schema(description = "학생 답안 sn")
     val studentAnswerSn: Long? = null,
 

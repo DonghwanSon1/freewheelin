@@ -10,8 +10,8 @@ data class StudentPieceProblemAnswerRs(
     @Schema(description = "총 문제수")
     val totalProblemCount: Int = 0,
 
-    @Schema(description = "제출한 답안 수")
-    val studentAnswerCount: Int = 0,
+    @Schema(description = "할당된 학습지에 채점된 수")
+    val gradingCount: Int = 0,
 
     @Schema(description = "맞은 개수")
     val correctCount: Int = 0,
@@ -21,11 +21,11 @@ data class StudentPieceProblemAnswerRs(
 
 ){
     companion object {
-        fun of(totalProblemCount: Int, studentAnswerCount: Int, correctCount: Int)
+        fun of(totalProblemCount: Int, gradingCount: Int, correctCount: Int)
         : StudentPieceProblemAnswerRs {
             return StudentPieceProblemAnswerRs(
                 totalProblemCount = totalProblemCount,
-                studentAnswerCount = studentAnswerCount,
+                gradingCount = gradingCount,
                 correctCount = correctCount,
                 correctRate = ((correctCount / totalProblemCount.toDouble()) * 100).toInt()
             )

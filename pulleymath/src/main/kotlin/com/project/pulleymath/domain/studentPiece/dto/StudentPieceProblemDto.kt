@@ -1,9 +1,8 @@
-package com.project.pulleymath.domain.pieceProblem.dto
+package com.project.pulleymath.domain.studentPiece.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
-import java.time.LocalDateTime
 
-data class PieceProblemDto(
+data class StudentPieceProblemDto(
     @Schema(description = "문제 유형코드")
     val unitCode: String? = null,
 

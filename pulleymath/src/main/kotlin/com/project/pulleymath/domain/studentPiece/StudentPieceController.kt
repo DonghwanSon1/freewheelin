@@ -65,14 +65,15 @@ class StudentPieceController(
    * 참고
    *  - 로그인 후 토큰을 발급 받고 헤더값에 넣어야 호출 가능함!
    *  - 시큐리티를 통해 유저가 학생이 아니면 해당 API를 호출 할 수 없다.
-   *  - 학생 학습지 조회 API를 통해 studentPieceSn를 사용한다.
-   *
+   *  - 2문제 이상 50문제 이하로 요청이 들어오지 않으면 Exception 발생 (학습지 생성 시 2<=문제<=50 이기 때문이다.)
+   *  - 재채점을 해야하는 문제가 있다면, Rq 에서 studentAnswerSn을 필수로 받아야 함.
    */
   @PutMapping("/problem")
   @Operation(summary = "할당 받은 학습지 문제 답안 제출", description = "자신이 할당 받은 학습지의 문제를 풀고 제출합니다.")
   fun saveStudentPieceProblemAnswer(@RequestParam studentPieceSn: Long,
                                     @RequestBody studentPieceProblemAnswerRq: List<StudentPieceProblemAnswerRq>)
   : BaseResponse<StudentPieceProblemAnswerRs> {
+    // 2 <= 답안 <= 50 이외의 개수를 보내면 Exception 발생한다.
     if (studentPieceProblemAnswerRq.size < 2 || studentPieceProblemAnswerRq.size > 50)
       throw CommonException(CommonExceptionCode.EMPTY_OR_OVER_PROBLEM_ANSWER)
 

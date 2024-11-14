@@ -40,4 +40,14 @@ class StudentPieceAnswer(
             )
         }
     }
+
+    fun update(studentAnswer: Long, grading: Boolean): StudentPieceAnswer {
+        return StudentPieceAnswer(
+            sn = this.sn,
+            studentPiece = this.studentPiece,
+            problem = this.problem,
+            studentAnswer = studentAnswer,
+            grading = grading
+        )
+    }
 }

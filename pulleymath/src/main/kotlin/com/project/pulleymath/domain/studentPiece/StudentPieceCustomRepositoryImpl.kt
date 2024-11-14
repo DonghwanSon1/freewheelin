@@ -2,19 +2,16 @@ package com.project.pulleymath.domain.studentPiece
 
 import com.project.pulleymath.domain.piece.QPiece
 import com.project.pulleymath.domain.pieceProblem.QPieceProblem
-import com.project.pulleymath.domain.pieceProblem.dto.PieceProblemDto
+import com.project.pulleymath.domain.studentPiece.dto.StudentPieceProblemDto
 import com.project.pulleymath.domain.problem.QProblem
-import com.project.pulleymath.domain.problem.enums.Type
 import com.querydsl.core.types.Projections
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.stereotype.Repository
-import com.project.pulleymath.domain.problem.rqrs.ProblemRs
 import com.project.pulleymath.domain.studentPiece.rqrs.StudentPieceRs
 import com.project.pulleymath.domain.studentPieceAnswer.QStudentPieceAnswer
 import com.project.pulleymath.domain.unitCode.QUnitCode
 import com.project.pulleymath.domain.users.QUsers
 import com.project.pulleymath.domain.users.Users
-import com.querydsl.core.types.dsl.BooleanExpression
 
 @Repository
 class StudentPieceCustomRepositoryImpl(private val queryFactory: JPAQueryFactory) : StudentPieceCustomRepository {
@@ -48,11 +45,11 @@ class StudentPieceCustomRepositoryImpl(private val queryFactory: JPAQueryFactory
             .fetch()
     }
 
-    override fun searchPieceProblem(studentPieceSn: Long, student: Users): List<PieceProblemDto>? {
+    override fun searchStudentPieceProblem(studentPieceSn: Long, student: Users): List<StudentPieceProblemDto>? {
         return queryFactory
             .select(
                 Projections.fields(
-                    PieceProblemDto::class.java,
+                    StudentPieceProblemDto::class.java,
                     unitCode.code.`as`("unitCode"),
                     unitCode.name.`as`("unitCodeName"),
                     problem.sn.`as`("problemSn"),

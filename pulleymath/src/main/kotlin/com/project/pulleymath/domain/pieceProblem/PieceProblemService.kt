@@ -2,7 +2,6 @@ package com.project.pulleymath.domain.pieceProblem
 
 
 import com.project.pulleymath.domain.piece.Piece
-import com.project.pulleymath.domain.pieceProblem.dto.PieceProblemDto
 import com.project.pulleymath.domain.pieceProblem.dto.PieceProblemSimpleDto
 import com.project.pulleymath.domain.problem.Problem
 import org.springframework.stereotype.Service
@@ -27,15 +26,6 @@ class PieceProblemService(
     problemSnList.forEach { pieceProblemEntities.add(PieceProblem.createPieceProblem(piece, Problem.from(it))) }
     pieceProblemRepository.saveAll(pieceProblemEntities)
 
-  }
-
-  /**
-   * 학습지 문제 조회하는 함수
-   *  - DTO 대로 조회한다.
-   */
-  fun searchPieceProblem(piece: Piece): List<PieceProblemDto>? {
-    // dto에 맞춰 조회한 후 return 한다.
-    return pieceProblemRepository.searchPieceProblem(piece)
   }
 
   /**
