@@ -7,17 +7,18 @@ import com.project.pulleymath.domain.piece.Piece
 import com.project.pulleymath.domain.piece.PieceService
 import com.project.pulleymath.domain.pieceProblem.PieceProblemService
 import com.project.pulleymath.domain.pieceProblem.dto.PieceProblemDto
-import com.project.pulleymath.domain.studentPiece.rqrs.StudentPieceProblemDetailRs
+import com.project.pulleymath.domain.pieceProblem.dto.PieceProblemSimpleDto
+import com.project.pulleymath.domain.studentPiece.rqrs.*
+import com.project.pulleymath.domain.studentPieceAnswer.StudentPieceAnswerService
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import com.project.pulleymath.domain.studentPiece.rqrs.StudentPieceProblemRs
-import com.project.pulleymath.domain.studentPiece.rqrs.StudentPieceRs
 import com.project.pulleymath.domain.users.Users
 
 @Service
 @Transactional(readOnly = true)
 class StudentPieceService(
     private val pieceProblemService: PieceProblemService,
+    private val studentPieceAnswerService: StudentPieceAnswerService,
     private val studentPieceRepository: StudentPieceRepository
 ) {
 
@@ -58,9 +59,8 @@ class StudentPieceService(
    *  - Rs 대로 응답값을 제공하기 위해 unitCode로 GroupBy 하고, 각각의 Rs 형식에 맞춰 응답값을 생성하여 응답한다.
    */
   fun searchStudentPieceProblem(studentPieceSn: Long, userSn: Long): List<StudentPieceProblemRs>? {
-    // studentPieceSn 없거나 로그인한 학생이 할당받지 않은 학습지라면 Exception 발생
-    val studentPiece: StudentPiece = studentPieceRepository.findBySnAndStudentSn(studentPieceSn, Users.from(userSn))
-        ?: throw CommonException(CommonExceptionCode.INVALID_STUDENT_PIECE)
+    // studentPiece check
+    val studentPiece: StudentPiece = this.checkStudentPiece(studentPieceSn, Users.from(userSn))
 
     // 위에서 학생 학습지가 할당되었거나 존재한다면, 해당 학습지 안에는 무조건 문제가 있음. -> 따라서 데이터가 없다면, 데이터 손실로 인한 Exception 발생한다.
     val dto: List<PieceProblemDto> = pieceProblemService.searchPieceProblem(studentPiece.piece!!)
@@ -75,5 +75,32 @@ class StudentPieceService(
     return groupByUnitCode
   }
 
+  @Transactional
+  fun saveStudentPieceProblemAnswer(studentPieceSn: Long,
+                                    userSn: Long,
+                                    studentPieceProblemAnswerRq: List<StudentPieceProblemAnswerRq>)
+  : StudentPieceProblemAnswerRs {
+    // studentPiece check
+    val studentPiece: StudentPiece = this.checkStudentPiece(studentPieceSn, Users.from(userSn))
+
+    val dto: List<PieceProblemSimpleDto> = pieceProblemService.searchSimplePieceProblem(studentPiece.piece!!)
+        ?: throw CommonException(CommonExceptionCode.DATA_LOSS)
+
+    val resultRs: StudentPieceProblemAnswerRs = studentPieceAnswerService.saveStudentPieceProblemAnswer(
+        studentPieceSn, studentPieceProblemAnswerRq, dto)
+
+    studentPieceRepository.save(studentPiece.updateCorrectRate(resultRs.correctRate))
+
+    return resultRs
+  }
+
+  /**
+   * 학생 학습지가 있는지, 할당받은 학습지인지 판별하는 private 함수
+   * - studentPieceSn 없거나 로그인한 학생이 할당받지 않은 학습지라면 Exception 발생
+   */
+  private fun checkStudentPiece(studentPieceSn: Long, user:Users): StudentPiece {
+    return studentPieceRepository.findBySnAndStudentSn(studentPieceSn, user)
+        ?: throw CommonException(CommonExceptionCode.INVALID_STUDENT_PIECE)
+  }
 
 }

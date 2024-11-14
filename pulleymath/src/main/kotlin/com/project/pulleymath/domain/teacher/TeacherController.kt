@@ -48,7 +48,7 @@ class TeacherController(
      * 참고
      *  - 로그인 후 토큰을 발급 받고 헤더값에 넣어야 호출 가능함!
      *  - 시큐리티를 통해 유저가 선생님이 아니면 해당 API를 호출 할 수 없다.
-     *  - 학습지 이름이 없거나, 문제가 1개 이상 50개 까지 등록 가능하다.
+     *  - 학습지 이름이 없거나, 문제가 2개 이상 50개 까지 등록 가능하다.
      */
     @PostMapping("/piece")
     @Operation(summary = "학습지 생성", description = "선생님이 학습지를 생성합니다.")
@@ -57,7 +57,7 @@ class TeacherController(
         // 학습지 이름이 비워있거나 Null로 들어올 시 Exception 발생
         if (pieceRq.name.isNullOrEmpty()) throw CommonException(CommonExceptionCode.EMPTY_PIECE_NAME)
         // 문제 리스트가 비워있거나 Null로 들어올 시 Exception 발생
-        if (pieceRq.problemSnList.isNullOrEmpty() || pieceRq.problemSnList.size > 50)
+        if (pieceRq.problemSnList.size < 2 || pieceRq.problemSnList.size > 50)
             throw CommonException(CommonExceptionCode.EMPTY_OR_OVER_PROBLEM)
 
         // 토큰을 통해 UserSn을 가져온다.

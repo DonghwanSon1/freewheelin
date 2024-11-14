@@ -3,6 +3,7 @@ package com.project.pulleymath.domain.pieceProblem
 import com.project.pulleymath.domain.piece.Piece
 import com.project.pulleymath.domain.piece.QPiece
 import com.project.pulleymath.domain.pieceProblem.dto.PieceProblemDto
+import com.project.pulleymath.domain.pieceProblem.dto.PieceProblemSimpleDto
 import com.project.pulleymath.domain.problem.QProblem
 import com.project.pulleymath.domain.problem.enums.Type
 import com.querydsl.core.types.Projections
@@ -38,5 +39,21 @@ class PieceProblemCustomRepositoryImpl(private val queryFactory: JPAQueryFactory
             .where(pieceProblem.piece.eq(piece))
             .orderBy(problem.type.asc(), problem.level.asc())
             .fetch()
+    }
+
+    override fun searchSimplePieceProblem(piece: Piece): List<PieceProblemSimpleDto>? {
+        return queryFactory
+            .select(
+                Projections.fields(
+                    PieceProblemSimpleDto::class.java,
+                    problem.sn.`as`("problemSn"),
+                    problem.answer.`as`("problemAnswer")
+                )
+            )
+            .from(pieceProblem)
+            .join(pieceProblem.problem, problem)
+            .where(pieceProblem.piece.eq(piece))
+            .fetch()
+
     }
 }

@@ -2,6 +2,9 @@ package com.project.pulleymath.domain.studentPieceAnswer
 
 import com.project.pulleymath.domain.piece.Piece
 import com.project.pulleymath.domain.problem.Problem
+import com.project.pulleymath.domain.problem.rqrs.ProblemListRs
+import com.project.pulleymath.domain.problem.rqrs.ProblemRs
+import com.project.pulleymath.domain.studentPiece.StudentPiece
 import javax.persistence.*
 
 @Entity
@@ -13,8 +16,8 @@ class StudentPieceAnswer(
     val sn: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = ForeignKey(name = "FK_STUDENT_PIECE_PROBLEM_ANSWER_PIECE_SN"))
-    val piece: Piece? = null,
+    @JoinColumn(foreignKey = ForeignKey(name = "FK_STUDENT_PIECE_PROBLEM_ANSWER_STUDENT_PIECE_SN"))
+    val studentPiece: StudentPiece? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = ForeignKey(name = "FK_STUDENT_PIECE_PROBLEM_ANSWER_PROBLEM_SN"))
@@ -25,5 +28,16 @@ class StudentPieceAnswer(
 
     @Column(name = "grading")
     val grading: Boolean? = null,
-    ) {
+
+) {
+    companion object {
+        fun createStudentPieceAnswer(studentPieceSn: Long, problemSn: Long, studentAnswer: Long, grading: Boolean): StudentPieceAnswer {
+            return StudentPieceAnswer(
+                studentPiece = StudentPiece.from(studentPieceSn),
+                problem = Problem.from(problemSn),
+                studentAnswer = studentAnswer,
+                grading = grading
+            )
+        }
+    }
 }

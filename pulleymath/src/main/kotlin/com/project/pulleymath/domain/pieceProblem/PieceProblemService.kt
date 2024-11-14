@@ -3,6 +3,7 @@ package com.project.pulleymath.domain.pieceProblem
 
 import com.project.pulleymath.domain.piece.Piece
 import com.project.pulleymath.domain.pieceProblem.dto.PieceProblemDto
+import com.project.pulleymath.domain.pieceProblem.dto.PieceProblemSimpleDto
 import com.project.pulleymath.domain.problem.Problem
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -35,5 +36,14 @@ class PieceProblemService(
   fun searchPieceProblem(piece: Piece): List<PieceProblemDto>? {
     // dto에 맞춰 조회한 후 return 한다.
     return pieceProblemRepository.searchPieceProblem(piece)
+  }
+
+  /**
+   * 간단하게 학습지 문제, 답 만 조회하는 함수
+   *  - DTO 대로 조회한다.
+   */
+  fun searchSimplePieceProblem(piece: Piece): List<PieceProblemSimpleDto>? {
+    // dto에 맞춰 조회한 후 return 한다.
+    return pieceProblemRepository.searchSimplePieceProblem(piece)
   }
 }

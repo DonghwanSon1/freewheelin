@@ -32,5 +32,17 @@ class StudentPiece(
                 correctRate = 0
             )
         }
+        fun from(studentPieceSn: Long): StudentPiece {
+            return StudentPiece(sn = studentPieceSn)
+        }
+    }
+
+    fun updateCorrectRate(correctRate: Int): StudentPiece {
+        return StudentPiece(
+            sn = this.sn,
+            piece = this.piece,
+            studentSn = this.studentSn,
+            correctRate = correctRate
+        )
     }
 }
