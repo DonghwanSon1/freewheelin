@@ -4,6 +4,9 @@ import io.swagger.v3.oas.annotations.media.Schema
 import java.time.LocalDateTime
 
 data class StudentPieceProblemAnswerRq(
+    @Schema(description = "학생 답안 sn")
+    val studentAnswerSn: Long? = null,
+
     @Schema(description = "문제 sn")
     val problemSn: Long? = null,
 

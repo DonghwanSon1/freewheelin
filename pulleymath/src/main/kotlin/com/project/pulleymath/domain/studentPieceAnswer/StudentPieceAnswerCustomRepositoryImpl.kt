@@ -10,5 +10,5 @@ class StudentPieceAnswerCustomRepositoryImpl(private val queryFactory: JPAQueryF
 
     private val problem: QProblem = QProblem.problem
     private val piece: QPiece = QPiece.piece
-    private val studentPiece: QStudentPieceAnswer = QStudentPieceAnswer.studentPieceAnswer
+    private val studentPieceAnswer: QStudentPieceAnswer = QStudentPieceAnswer.studentPieceAnswer
 }

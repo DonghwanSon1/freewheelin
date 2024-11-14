@@ -55,22 +55,22 @@ class StudentPieceService(
   /**
    * 할당 받은 학습지의 문제들을 조회 하는 함수
    *  - studentPieceSn 이 없거나 할당받지 않은 학습지라면 Exception
-   *  - 학습지를 생성 시 문제를 1문제 이상은 저장해야 하기 때문에 학습지의 문제 조회 시 데이터가 없다면 데이터 손실로 인한 Exception
+   *  - 이미 제출한 문제도 재 제출 할 수 있도록 조회 시 제출했던 문제들(studentAnswerSn, studentAnswer, grading)도 제공한다.
    *  - Rs 대로 응답값을 제공하기 위해 unitCode로 GroupBy 하고, 각각의 Rs 형식에 맞춰 응답값을 생성하여 응답한다.
    */
   fun searchStudentPieceProblem(studentPieceSn: Long, userSn: Long): List<StudentPieceProblemRs>? {
-    // studentPiece check
-    val studentPiece: StudentPiece = this.checkStudentPiece(studentPieceSn, Users.from(userSn))
+    // studentPieceSn 이 없거나 할당받지 않은 학습지라면 Exception
+    val dto: List<PieceProblemDto> = studentPieceRepository.searchPieceProblem(studentPieceSn, Users.from(userSn))
+        .takeIf { it!!.isNotEmpty() } ?: throw CommonException(CommonExceptionCode.INVALID_STUDENT_PIECE)
 
-    // 위에서 학생 학습지가 할당되었거나 존재한다면, 해당 학습지 안에는 무조건 문제가 있음. -> 따라서 데이터가 없다면, 데이터 손실로 인한 Exception 발생한다.
-    val dto: List<PieceProblemDto> = pieceProblemService.searchPieceProblem(studentPiece.piece!!)
-        ?: throw CommonException(CommonExceptionCode.DATA_LOSS)
-
-    // 학습지에 속한 문제들을 가져온 DTO 를 통해 RS 대로 응답 해줄 수 있게 unitCode로 GroupBy 한 후 Rs 형식대로 만들어 Return 한다.
+    // 가져온 DTO 를 통해 RS 대로 응답 해줄 수 있게 unitCode로 GroupBy 한 후 Rs 형식대로 만들어 Return 한다.
     val groupByUnitCode = dto.groupBy { it.unitCode }
-        .map { (unitCode, problems) -> StudentPieceProblemRs.of(unitCode!!, problems.first().unitCodeName!!,
-          problems.map { StudentPieceProblemDetailRs.of(it.problemSn!!, it.level!!, it.type!!) }
-        ) }
+        .map { (unitCode, problems) -> StudentPieceProblemRs.of(
+            unitCode!!,
+            problems.first().unitCodeName!!,
+            problems.map { StudentPieceProblemDetailRs.of(
+                it.problemSn!!, it.level!!, it.type!!, it.studentAnswerSn, it.studentAnswer, it.grading)
+            }) }
 
     return groupByUnitCode
   }
@@ -80,8 +80,9 @@ class StudentPieceService(
                                     userSn: Long,
                                     studentPieceProblemAnswerRq: List<StudentPieceProblemAnswerRq>)
   : StudentPieceProblemAnswerRs {
-    // studentPiece check
-    val studentPiece: StudentPiece = this.checkStudentPiece(studentPieceSn, Users.from(userSn))
+    // studentPieceSn 없거나 로그인한 학생이 할당받지 않은 학습지라면 Exception 발생
+    val studentPiece: StudentPiece = studentPieceRepository.findBySnAndStudentSn(studentPieceSn, Users.from(userSn))
+        ?: throw CommonException(CommonExceptionCode.INVALID_STUDENT_PIECE)
 
     val dto: List<PieceProblemSimpleDto> = pieceProblemService.searchSimplePieceProblem(studentPiece.piece!!)
         ?: throw CommonException(CommonExceptionCode.DATA_LOSS)
@@ -94,13 +95,5 @@ class StudentPieceService(
     return resultRs
   }
 
-  /**
-   * 학생 학습지가 있는지, 할당받은 학습지인지 판별하는 private 함수
-   * - studentPieceSn 없거나 로그인한 학생이 할당받지 않은 학습지라면 Exception 발생
-   */
-  private fun checkStudentPiece(studentPieceSn: Long, user:Users): StudentPiece {
-    return studentPieceRepository.findBySnAndStudentSn(studentPieceSn, user)
-        ?: throw CommonException(CommonExceptionCode.INVALID_STUDENT_PIECE)
-  }
 
 }

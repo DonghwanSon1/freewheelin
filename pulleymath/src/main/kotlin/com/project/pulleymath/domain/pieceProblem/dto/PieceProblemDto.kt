@@ -19,4 +19,12 @@ data class PieceProblemDto(
     @Schema(description = "문제 유형")
     val type: String? = null,
 
+    @Schema(description = "학생 답안 sn")
+    val studentAnswerSn: Long? = null,
+
+    @Schema(description = "학생 답안")
+    val studentAnswer: Long? = null,
+
+    @Schema(description = "정답 여부")
+    val grading: Boolean? = null,
 )
