@@ -1,7 +1,6 @@
 package com.project.pulleymath.domain.userRole
 
 import com.project.pulleymath.domain.users.Users
-import com.project.pulleymath.domain.userRole.enums.Role
 import javax.persistence.*
 
 @Entity

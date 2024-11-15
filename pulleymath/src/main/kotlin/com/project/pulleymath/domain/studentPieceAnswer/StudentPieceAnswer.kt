@@ -1,9 +1,6 @@
 package com.project.pulleymath.domain.studentPieceAnswer
 
-import com.project.pulleymath.domain.piece.Piece
 import com.project.pulleymath.domain.problem.Problem
-import com.project.pulleymath.domain.problem.rqrs.ProblemListRs
-import com.project.pulleymath.domain.problem.rqrs.ProblemRs
 import com.project.pulleymath.domain.studentPiece.StudentPiece
 import javax.persistence.*
 

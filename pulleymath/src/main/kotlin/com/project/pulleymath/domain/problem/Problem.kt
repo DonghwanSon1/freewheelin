@@ -1,7 +1,6 @@
 package com.project.pulleymath.domain.problem
 
 import com.project.pulleymath.domain.unitCode.UnitCode
-import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
@@ -31,14 +30,4 @@ class Problem(
             return Problem(sn = problemSn)
         }
     }
-
-//    fun updateCategory(categoryRq: CategoryRq): Problem {
-//        return Problem(
-//            sn = this.sn,
-//            name = categoryRq.name ?: this.name,
-//            order = categoryRq.order ?: this.order,
-//            createdAt = this.createdAt ?: LocalDateTime.now(),
-//            updatedAt = LocalDateTime.now()
-//        )
-//    }
 }

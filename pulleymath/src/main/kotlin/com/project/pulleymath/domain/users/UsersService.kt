@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional
 import com.project.pulleymath.domain.userRole.enums.Role
 import com.project.pulleymath.domain.users.rqrs.LoginRq
 import com.project.pulleymath.domain.users.rqrs.UserRq
-import com.project.pulleymath.domain.users.rqrs.UserRs
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -26,6 +25,9 @@ class UsersService(
     private val passwordEncoder: PasswordEncoder
 ) {
 
+  /**
+   * 회원가입 (선생님, 학생)
+   */
   @Transactional
   fun signUp(userRq: UserRq, role: Role): String {
     var user: Users? = usersRepository.findById(userRq.id!!)
@@ -40,7 +42,7 @@ class UsersService(
   }
 
   /**
-   * 로그인 -> 토큰 발행
+   * 로그인 (토큰 발행)
    */
   fun login(loginRq: LoginRq): TokenInfo {
     val authenticationToken = UsernamePasswordAuthenticationToken(loginRq.id, loginRq.password)

@@ -1,14 +1,10 @@
 package com.project.pulleymath.domain.users
 
-import com.project.pulleymath.domain.problem.enums.Type
 import com.querydsl.core.types.Projections
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.stereotype.Repository
-import com.project.pulleymath.domain.problem.rqrs.ProblemRs
-import com.project.pulleymath.domain.unitCode.QUnitCode
 import com.project.pulleymath.domain.userRole.QUsersRole
 import com.project.pulleymath.domain.users.rqrs.UserRs
-import com.querydsl.core.types.dsl.BooleanExpression
 
 @Repository
 class UsersCustomRepositoryImpl(private val queryFactory: JPAQueryFactory) : UsersCustomRepository {

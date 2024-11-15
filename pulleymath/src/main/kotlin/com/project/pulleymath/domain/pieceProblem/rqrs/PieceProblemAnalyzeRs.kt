@@ -1,10 +1,7 @@
 package com.project.pulleymath.domain.pieceProblem.rqrs
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.project.pulleymath.domain.problem.Problem
 import io.swagger.v3.oas.annotations.media.Schema
-import java.time.LocalDateTime
 
 data class PieceProblemAnalyzeRs(
     @Schema(description = "문제 sn")
@@ -25,14 +22,4 @@ data class PieceProblemAnalyzeRs(
             problemCorrectRate = ((problemCorrectCount!! / totalCount) * 100).toInt()
         )
     }
-
-//    companion object {
-//        fun of(studentSn: Long?, studentName: String?, pieceCorrectRate: Int?): PieceProblemAnalyzeRs {
-//            return PieceProblemAnalyzeRs(
-//                studentSn = studentSn,
-//                studentName = studentName,
-//                pieceCorrectRate = pieceCorrectRate
-//            )
-//        }
-//    }
 }

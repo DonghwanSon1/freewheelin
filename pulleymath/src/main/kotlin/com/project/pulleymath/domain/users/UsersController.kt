@@ -2,12 +2,10 @@ package com.project.pulleymath.domain.users
 
 import com.example.demo.common.authority.TokenInfo
 import com.project.pulleymath.common.response.BaseResponse
-import com.project.pulleymath.common.response.CustomUser
 import com.project.pulleymath.domain.userRole.enums.Role
 import com.project.pulleymath.domain.users.rqrs.LoginRq
 import com.project.pulleymath.domain.users.rqrs.UserRq
 import io.swagger.v3.oas.annotations.tags.Tag
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.*
 
 @RestController

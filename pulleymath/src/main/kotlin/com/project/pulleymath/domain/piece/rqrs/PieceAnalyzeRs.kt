@@ -2,7 +2,6 @@ package com.project.pulleymath.domain.piece.rqrs
 
 import com.project.pulleymath.domain.pieceProblem.rqrs.PieceProblemAnalyzeRs
 import io.swagger.v3.oas.annotations.media.Schema
-import java.time.LocalDateTime
 
 data class PieceAnalyzeRs(
     @Schema(description = "학습지 sn")

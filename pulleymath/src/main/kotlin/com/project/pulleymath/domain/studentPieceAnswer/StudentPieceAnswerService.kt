@@ -5,7 +5,6 @@ import com.project.pulleymath.domain.pieceProblem.dto.PieceProblemSimpleDto
 import com.project.pulleymath.domain.studentPiece.StudentPiece
 import com.project.pulleymath.domain.studentPiece.rqrs.StudentPieceProblemAnswerRq
 import com.project.pulleymath.domain.studentPiece.rqrs.StudentPieceProblemAnswerRs
-import com.sun.source.tree.IfTree
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

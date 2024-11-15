@@ -4,9 +4,6 @@ import com.project.pulleymath.common.exception.CommonException
 import com.project.pulleymath.common.exception.CommonExceptionCode
 import com.project.pulleymath.common.response.BaseResponse
 import com.project.pulleymath.common.response.CustomUser
-import com.project.pulleymath.domain.problem.enums.Level
-import com.project.pulleymath.domain.problem.enums.Type
-import com.project.pulleymath.domain.problem.rqrs.ProblemListRs
 import com.project.pulleymath.domain.studentPiece.rqrs.StudentPieceProblemAnswerRq
 import com.project.pulleymath.domain.studentPiece.rqrs.StudentPieceProblemAnswerRs
 import com.project.pulleymath.domain.studentPiece.rqrs.StudentPieceProblemRs

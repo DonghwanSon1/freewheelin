@@ -1,6 +1,5 @@
 package com.project.pulleymath.domain.unitCode
 
-import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity

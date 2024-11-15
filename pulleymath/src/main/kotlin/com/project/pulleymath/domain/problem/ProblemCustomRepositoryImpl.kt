@@ -48,20 +48,4 @@ class ProblemCustomRepositoryImpl(private val queryFactory: JPAQueryFactory) : P
             null
         }
     }
-
-//    override fun findAllCategory(): List<CategoryRs> {
-//        return queryFactory
-//            .select(
-//                Projections.fields(
-//                    CategoryRs::class.java,
-//                    category.sn,
-//                    category.name,
-//                    category.createdAt,
-//                    category.updatedAt
-//                )
-//            )
-//            .from(category)
-//            .orderBy(category.order.asc())
-//            .fetch()
-//    }
 }

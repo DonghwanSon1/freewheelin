@@ -71,6 +71,5 @@ class StudentPieceCustomRepositoryImpl(private val queryFactory: JPAQueryFactory
                 studentPiece.studentSn.eq(student))
             .orderBy(problem.type.asc(), problem.level.asc())
             .fetch()
-
     }
 }

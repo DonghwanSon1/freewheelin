@@ -8,12 +8,10 @@ import com.project.pulleymath.domain.piece.PieceService
 import com.project.pulleymath.domain.piece.rqrs.PieceAnalyzeRs
 import com.project.pulleymath.domain.piece.rqrs.PieceRq
 import com.project.pulleymath.domain.piece.rqrs.PieceRs
-import com.project.pulleymath.domain.pieceProblem.PieceProblemService
 import com.project.pulleymath.domain.problem.ProblemService
 import com.project.pulleymath.domain.problem.enums.Level
 import com.project.pulleymath.domain.problem.enums.Type
 import com.project.pulleymath.domain.problem.rqrs.ProblemListRs
-import com.project.pulleymath.domain.userRole.enums.Role
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.security.core.context.SecurityContextHolder

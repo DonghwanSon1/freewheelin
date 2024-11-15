@@ -2,17 +2,12 @@ package com.project.pulleymath.domain.piece
 
 import com.project.pulleymath.domain.piece.dto.PieceAnalyzeDto
 import com.project.pulleymath.domain.piece.rqrs.PieceRs
-import com.project.pulleymath.domain.problem.QProblem
-import com.project.pulleymath.domain.problem.enums.Type
 import com.querydsl.core.types.Projections
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.stereotype.Repository
-import com.project.pulleymath.domain.problem.rqrs.ProblemRs
 import com.project.pulleymath.domain.studentPiece.QStudentPiece
-import com.project.pulleymath.domain.unitCode.QUnitCode
 import com.project.pulleymath.domain.users.QUsers
 import com.project.pulleymath.domain.users.Users
-import com.querydsl.core.types.dsl.BooleanExpression
 
 @Repository
 class PieceCustomRepositoryImpl(private val queryFactory: JPAQueryFactory) : PieceCustomRepository {

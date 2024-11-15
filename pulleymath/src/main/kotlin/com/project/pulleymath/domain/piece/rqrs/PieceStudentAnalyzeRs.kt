@@ -1,9 +1,7 @@
 package com.project.pulleymath.domain.piece.rqrs
 
 import com.fasterxml.jackson.annotation.JsonInclude
-import com.project.pulleymath.domain.problem.Problem
 import io.swagger.v3.oas.annotations.media.Schema
-import java.time.LocalDateTime
 
 data class PieceStudentAnalyzeRs(
     @JsonInclude(JsonInclude.Include.NON_NULL)

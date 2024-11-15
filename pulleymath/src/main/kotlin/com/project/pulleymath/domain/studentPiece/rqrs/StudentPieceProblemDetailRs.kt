@@ -2,7 +2,6 @@ package com.project.pulleymath.domain.studentPiece.rqrs
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import io.swagger.v3.oas.annotations.media.Schema
-import java.time.LocalDateTime
 
 data class StudentPieceProblemDetailRs(
     @Schema(description = "문제 sn")

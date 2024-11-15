@@ -9,13 +9,11 @@ import com.project.pulleymath.domain.studentPieceAnswer.QStudentPieceAnswer
 import com.querydsl.core.types.Projections
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.stereotype.Repository
-import com.project.pulleymath.domain.unitCode.QUnitCode
 
 @Repository
 class PieceProblemCustomRepositoryImpl(private val queryFactory: JPAQueryFactory) : PieceProblemCustomRepository {
 
     private val problem: QProblem = QProblem.problem
-    private val unitCode: QUnitCode = QUnitCode.unitCode
     private val pieceProblem: QPieceProblem = QPieceProblem.pieceProblem
     private val studentPiece: QStudentPiece = QStudentPiece.studentPiece
     private val studentPieceAnswer: QStudentPieceAnswer = QStudentPieceAnswer.studentPieceAnswer

@@ -1,7 +1,6 @@
 package com.project.pulleymath.domain.studentPiece.rqrs
 
 import io.swagger.v3.oas.annotations.media.Schema
-import java.time.LocalDateTime
 
 data class StudentPieceRs(
     @Schema(description = "학생 학습지 sn")

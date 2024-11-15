@@ -10,15 +10,10 @@ import com.project.pulleymath.domain.piece.rqrs.PieceRs
 import com.project.pulleymath.domain.piece.rqrs.PieceStudentAnalyzeRs
 import com.project.pulleymath.domain.pieceProblem.PieceProblemService
 import com.project.pulleymath.domain.pieceProblem.rqrs.PieceProblemAnalyzeRs
-import com.project.pulleymath.domain.problem.enums.Level
-import com.project.pulleymath.domain.problem.enums.Type
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import com.project.pulleymath.domain.problem.rqrs.ProblemListRs
-import com.project.pulleymath.domain.problem.rqrs.ProblemRs
 import com.project.pulleymath.domain.studentPiece.StudentPieceService
 import com.project.pulleymath.domain.users.Users
-import com.project.pulleymath.domain.users.UsersService
 
 @Service
 @Transactional(readOnly = true)

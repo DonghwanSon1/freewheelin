@@ -1,7 +1,6 @@
 package com.project.pulleymath.domain.pieceProblem.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
-import java.time.LocalDateTime
 
 data class PieceProblemSimpleDto(
 

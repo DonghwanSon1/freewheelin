@@ -102,6 +102,4 @@ class StudentPieceService(
 
     return resultRs
   }
-
-
 }

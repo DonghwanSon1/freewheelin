@@ -1,10 +1,6 @@
 package com.project.pulleymath.domain.studentPiece.rqrs
 
-import com.project.pulleymath.domain.piece.Piece
-import com.project.pulleymath.domain.studentPiece.StudentPiece
-import com.project.pulleymath.domain.users.Users
 import io.swagger.v3.oas.annotations.media.Schema
-import java.time.LocalDateTime
 
 data class StudentPieceProblemAnswerRs(
     @Schema(description = "총 문제수")

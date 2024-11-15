@@ -1,7 +1,6 @@
 package com.project.pulleymath.domain.studentPiece
 
 import com.project.pulleymath.domain.piece.Piece
-import com.project.pulleymath.domain.problem.Problem
 import com.project.pulleymath.domain.users.Users
 import javax.persistence.*
 

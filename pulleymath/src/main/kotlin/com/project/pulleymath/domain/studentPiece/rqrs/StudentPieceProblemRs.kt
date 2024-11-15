@@ -1,8 +1,6 @@
 package com.project.pulleymath.domain.studentPiece.rqrs
 
-import com.project.pulleymath.domain.problem.Problem
 import io.swagger.v3.oas.annotations.media.Schema
-import java.time.LocalDateTime
 
 data class StudentPieceProblemRs(
     @Schema(description = "문제 유형코드")
