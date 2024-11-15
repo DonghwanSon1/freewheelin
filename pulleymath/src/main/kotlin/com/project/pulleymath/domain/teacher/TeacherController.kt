@@ -5,6 +5,7 @@ import com.project.pulleymath.common.exception.CommonExceptionCode
 import com.project.pulleymath.common.response.BaseResponse
 import com.project.pulleymath.common.response.CustomUser
 import com.project.pulleymath.domain.piece.PieceService
+import com.project.pulleymath.domain.piece.rqrs.PieceAnalyzeRs
 import com.project.pulleymath.domain.piece.rqrs.PieceRq
 import com.project.pulleymath.domain.piece.rqrs.PieceRs
 import com.project.pulleymath.domain.pieceProblem.PieceProblemService
@@ -104,6 +105,23 @@ class TeacherController(
         // 토큰을 통해 UserSn을 가져온다.
         val userSn = (SecurityContextHolder.getContext().authentication.principal as CustomUser).sn
         return BaseResponse(data = pieceService.searchPiece(userSn))
+    }
+
+    /**
+     * 학습지 통계 조회 API
+     *
+     * 참고
+     *  - 로그인 후 토큰을 발급 받고 헤더값에 넣어야 호출 가능함!
+     *  - 시큐리티를 통해 유저가 선생님이 아니면 해당 API를 호출 할 수 없다.
+     *  - 자기 자신이 만든 학습지에 대한 통계를 조회한다.
+     *  - pieceSn을 통해 해당 학습지의 대한 통계를 조회한다.
+     */
+    @GetMapping("/piece/analyze")
+    @Operation(summary = "학습지 통계 조회", description = "자신이 만든 학습지를 통계 조회합니다.")
+    fun searchPieceAnalyze(@RequestParam pieceSn: Long): BaseResponse<PieceAnalyzeRs> {
+        // 토큰을 통해 UserSn을 가져온다.
+        val userSn = (SecurityContextHolder.getContext().authentication.principal as CustomUser).sn
+        return BaseResponse(data = pieceService.searchPieceAnalyze(pieceSn, userSn))
     }
 
 }
