@@ -1,6 +1,5 @@
 package com.project.pulleymath.common.authority
 
-import com.example.demo.common.authority.TokenInfo
 import com.project.pulleymath.common.exception.CommonException
 import com.project.pulleymath.common.exception.CommonExceptionCode
 import com.project.pulleymath.common.response.CustomUser
@@ -15,7 +14,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 import java.util.*
-import kotlin.RuntimeException
 
 @Component
 class JwtTokenProvider {
@@ -38,7 +36,6 @@ class JwtTokenProvider {
         val now = Date()
         val accessExpiration = Date(now.time + accessTokenExpireTime)
 
-        // Access Token
         val accessToken = Jwts
             .builder()
             .setSubject(authentication.name)
@@ -80,12 +77,12 @@ class JwtTokenProvider {
             return true
         } catch (e: Exception) {
             when (e) {
-                is SecurityException -> {}  // Invalid JWT Token
-                is MalformedJwtException -> {}  // Invalid JWT Token
-                is ExpiredJwtException -> {}    // Expired JWT Token
-                is UnsupportedJwtException -> {}    // Unsupported JWT Token
-                is IllegalArgumentException -> {}   // JWT claims string is empty
-                else -> {}  // else
+                is SecurityException -> {}
+                is MalformedJwtException -> {}
+                is ExpiredJwtException -> {}
+                is UnsupportedJwtException -> {}
+                is IllegalArgumentException -> {}
+                else -> {}
             }
             println(e.message)
         }

@@ -1,6 +1,6 @@
 package com.project.pulleymath.domain.users
 
-import com.example.demo.common.authority.TokenInfo
+import com.project.pulleymath.common.authority.TokenInfo
 import com.project.pulleymath.common.response.BaseResponse
 import com.project.pulleymath.domain.userRole.enums.Role
 import com.project.pulleymath.domain.users.rqrs.LoginRq

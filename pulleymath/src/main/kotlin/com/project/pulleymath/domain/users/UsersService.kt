@@ -1,7 +1,7 @@
 package com.project.pulleymath.domain.users
 
 
-import com.example.demo.common.authority.TokenInfo
+import com.project.pulleymath.common.authority.TokenInfo
 import com.project.pulleymath.common.authority.JwtTokenProvider
 import com.project.pulleymath.common.exception.CommonException
 import com.project.pulleymath.common.exception.CommonExceptionCode

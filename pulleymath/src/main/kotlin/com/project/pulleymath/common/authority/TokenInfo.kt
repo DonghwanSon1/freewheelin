@@ -1,4 +1,4 @@
-package com.example.demo.common.authority
+package com.project.pulleymath.common.authority
 
 data class TokenInfo(
     val grantType: String,
