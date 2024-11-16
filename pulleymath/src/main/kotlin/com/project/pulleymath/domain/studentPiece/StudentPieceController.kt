@@ -30,7 +30,6 @@ class StudentPieceController(
    *  - 토큰을 통해 학생의 SN을 구하고 자신이 할당 받은 학습지를 조회한다.
    *
    */
-  // TODO 추후 시간되면 페이징 넣기
   @GetMapping
   @Operation(summary = "학생 학습지 조회", description = "자신이 할당 받은 학습지를 조회합니다.")
   fun searchStudentPiece(): BaseResponse<List<StudentPieceRs>> {

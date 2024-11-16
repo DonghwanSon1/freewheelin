@@ -80,7 +80,7 @@ class TeacherController(
     fun examPiece(@PathVariable pieceSn: Long,
                   @RequestParam studentSns: List<Long>): BaseResponse<Unit> {
 
-        // 문제 리스트가 비워있거나 Null로 들어올 시 Exception 발생
+        // 학생 리스트가 비워있거나 Null로 들어올 시 Exception 발생
         if (studentSns.isNullOrEmpty()) throw CommonException(CommonExceptionCode.EXAM_EMPTY_STUDENTS)
 
         // 토큰을 통해 UserSn을 가져온다.

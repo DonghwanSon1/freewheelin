@@ -5,10 +5,13 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/pulleymath;DATABASE_TO_UPPER=false;MODE=MYSQL;AUTO_SERVER=TRUE
+    url: jdbc:h2:tcp://localhost/~/pullymath;MODE=MYSQL;
     driver-class-name: org.h2.Driver
     username: admin
     password: admin
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
   jpa:
     properties:
       hibernate:
