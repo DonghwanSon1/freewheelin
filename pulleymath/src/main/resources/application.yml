@@ -5,7 +5,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/pullymath;MODE=MYSQL;
+    url: jdbc:h2:tcp://localhost/~/pulley;MODE=MYSQL;
     driver-class-name: org.h2.Driver
     username: admin
     password: admin

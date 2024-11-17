@@ -9,6 +9,6 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:h2:tcp://host.docker.internal/~/pullymath
+      SPRING_DATASOURCE_URL: jdbc:h2:tcp://host.docker.internal/~/pulley;MODE=MYSQL
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: admin

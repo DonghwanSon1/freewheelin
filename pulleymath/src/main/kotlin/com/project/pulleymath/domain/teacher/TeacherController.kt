@@ -12,6 +12,8 @@ import com.project.pulleymath.domain.problem.ProblemService
 import com.project.pulleymath.domain.problem.enums.Level
 import com.project.pulleymath.domain.problem.enums.Type
 import com.project.pulleymath.domain.problem.rqrs.ProblemListRs
+import com.project.pulleymath.domain.unitCode.UnitCode
+import com.project.pulleymath.domain.unitCode.UnitCodeService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.security.core.context.SecurityContextHolder
@@ -21,9 +23,19 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/teacher")
 @Tag(name = "Teacher", description = "선생님 전용 API")
 class TeacherController(
+    private val unitCodeService: UnitCodeService,
     private val problemService: ProblemService,
     private val pieceService: PieceService
 ) {
+    /**
+     * 유형 코드 조회 API
+     *  - 문제 조회 API 시 유형 코드 sn을 알기 위해 조회한다.
+     */
+    @GetMapping("/unit-code")
+    @Operation(summary = "유형코드 조회", description = "유형 코드를 조회합니다.")
+    fun searchUnitCode(): BaseResponse<List<UnitCode>> {
+        return BaseResponse(data = unitCodeService.searchUnitCode())
+    }
 
     /**
      * 문제 조회 API

@@ -22,7 +22,7 @@ class SecurityConfig(
             .csrf { it.disable() }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authorizeHttpRequests {
-                it.antMatchers("/users/teacher/signup", "/users/student/login").permitAll()
+                it.antMatchers("/users/teacher/signup", "/users/student/login", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                     .antMatchers("/teacher/**").hasAuthority("TEACHER")
                     .antMatchers("/student-piece/**").hasAuthority("STUDENT")
                     .anyRequest().permitAll()

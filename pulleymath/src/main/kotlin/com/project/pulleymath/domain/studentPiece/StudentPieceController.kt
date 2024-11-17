@@ -65,7 +65,7 @@ class StudentPieceController(
    *  - 재채점을 해야하는 문제가 있다면, Rq 에서 studentAnswerSn을 필수로 받아야 함.
    */
   @PutMapping("/problem")
-  @Operation(summary = "할당 받은 학습지 문제 답안 제출", description = "자신이 할당 받은 학습지의 문제를 풀고 제출합니다.")
+  @Operation(summary = "할당 받은 학습지 문제 답안 제출", description = "자신이 할당 받은 학습지의 문제를 풀고 제출합니다. (** RequestBody에서 studentAnswerSn 은 재채점 시에만 첫 재출이면 해당 컬럼 없이 요청!)")
   fun saveStudentPieceProblemAnswer(@RequestParam studentPieceSn: Long,
                                     @RequestBody studentPieceProblemAnswerRq: List<StudentPieceProblemAnswerRq>)
   : BaseResponse<StudentPieceProblemAnswerRs> {
