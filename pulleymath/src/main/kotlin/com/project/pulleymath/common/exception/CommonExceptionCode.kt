@@ -18,5 +18,7 @@ enum class CommonExceptionCode(
     INVALID_STUDENT_PIECE(HttpStatus.BAD_REQUEST, "해당 학습지는 해당 유저에게 할당되지 않았습니다."),
     DATA_LOSS(HttpStatus.INTERNAL_SERVER_ERROR, "관리자에게 문의 부탁드립니다."),
     EMPTY_OR_OVER_PROBLEM_ANSWER(HttpStatus.BAD_REQUEST, "최소 2개 또는 최대 50개 까지 학습지 답안 제출이 가능합니다."),
+    DUPLICATE_DATA_ERROR(HttpStatus.CONFLICT, "중복 데이터 발생했습니다. 입력값을 확인 해주세요."),
+    CONSTRAINTS_ERROR(HttpStatus.BAD_REQUEST, "데이터 처리 중 오류가 발생했습니다. 입력값을 확인한 후 다시 시도해주세요."),
 
 }
