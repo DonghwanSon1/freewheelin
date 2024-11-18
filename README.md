@@ -8,8 +8,8 @@ freewheelin
 URL : https://garnet-cirrus-1fb.notion.site/13ff3c50319f804c947bc65de7349791?pvs=4
 
 미리 보기
-![image](https://github.com/user-attachments/assets/33eff2be-2981-4b08-97bc-3bfe708f0185)
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/33eff2be-2981-4b08-97bc-3bfe708f0185">
 
-<img width="633" alt="image" src="https://github.com/user-attachments/assets/0d237233-7886-4084-a280-509f9afeb417">
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/0d237233-7886-4084-a280-509f9afeb417">
 
-<img width="576" alt="image" src="https://github.com/user-attachments/assets/5697feeb-3ef3-4cbe-89bb-b88104a0ed32">
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/5697feeb-3ef3-4cbe-89bb-b88104a0ed32">
