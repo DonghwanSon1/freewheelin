@@ -1,4 +1,4 @@
-<img width="771" alt="image" src="https://github.com/user-attachments/assets/36b4ab61-ad20-45eb-83ca-6688b034487b"># freewheelin
+freewheelin
 프리윌린 과제
 
 결과물에 대한 정리한 문서 
@@ -9,3 +9,7 @@ URL : https://garnet-cirrus-1fb.notion.site/13ff3c50319f804c947bc65de7349791?pvs
 
 미리 보기
 ![image](https://github.com/user-attachments/assets/33eff2be-2981-4b08-97bc-3bfe708f0185)
+
+<img width="633" alt="image" src="https://github.com/user-attachments/assets/0d237233-7886-4084-a280-509f9afeb417">
+
+<img width="576" alt="image" src="https://github.com/user-attachments/assets/5697feeb-3ef3-4cbe-89bb-b88104a0ed32">
