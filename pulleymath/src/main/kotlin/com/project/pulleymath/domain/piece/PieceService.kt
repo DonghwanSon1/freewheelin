@@ -47,7 +47,7 @@ class PieceService(
   fun examPiece(pieceSn: Long, studentSns: List<Long>, userSn: Long): String {
 
     // 학습지가 없다면, Exception 발생
-    val piece: Piece = pieceRepository.findBySn(pieceSn) ?: throw CommonException(CommonExceptionCode.NOT_EXIST_PIECE)
+    val piece: Piece = pieceRepository.findById(pieceSn).orElseThrow { CommonException(CommonExceptionCode.NOT_EXIST_PIECE) }
     // 학습지가 출제하려는 선생님이 만든게 아니라면 Exception 발생
     if (piece.createdBy!!.sn != userSn) throw CommonException(CommonExceptionCode.INVALID_PIECE)
 

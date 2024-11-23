@@ -44,10 +44,10 @@ class StudentPieceAnswerService(
 
       // UpdateForRq 가 비워있으면 업데이트 할 엔티티가 없는것이고, 있다면 업데이트 할 엔티티 가져온 후 재 채점 한 후 엔티티를 업데이트한다.
       if (updateRq.isNotEmpty()) {
-        val updateEntities = studentPieceAnswerRepository.findBySnIn(updateRq.keys.toList())
+        val updateEntities = studentPieceAnswerRepository.findAllById(updateRq.keys.toList())
         addAll(updateEntities.map { entity ->
           val isCorrect = updateRq[entity.sn]!!.studentAnswer == dtoMap[entity.problem!!.sn]?.problemAnswer
-          entity.update(entity.studentAnswer!!, isCorrect)
+          entity.update(updateRq[entity.sn]!!.studentAnswer!!, isCorrect)
         })
       }
     }
